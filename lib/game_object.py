@@ -46,6 +46,12 @@ class GameObject:
                     collisions.append(obj[0])
         return collisions
 
+    def tick_task(self, f):
+        self._tasks.append(f)
+
+    def untick_task(self, f):
+        self._tasks.remove(f)
+
     def update(self):
         for task in self._tasks:
             task()
