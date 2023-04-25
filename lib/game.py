@@ -8,7 +8,7 @@ class Game:
     DRAWN = 1
     BOTH = 0
 
-    def __init__(self, fps: int = 60, screen: Screen = Screen(640, 480)):
+    def __init__(self, fps: int = 60, screen: Screen = Screen(320, 240)):
         self._fps = fps
         self.delta_time = 0
         self.time = 0

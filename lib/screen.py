@@ -8,6 +8,9 @@ class Screen(Box):
         self.pos = Vector(0, 0)
         self.aspect_ratio = width / height
 
+    def scaled_height(self, width: int) -> int:
+        return int(width * self.aspect_ratio)  # height
+
     def scaled_pos(self, x: float, y: float) -> Vector:
         return Vector(self.width * x, self.height * y)
 

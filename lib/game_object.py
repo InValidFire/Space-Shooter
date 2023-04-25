@@ -1,4 +1,6 @@
 from __future__ import annotations
+from itertools import product
+from typing import Type
 
 from . import Vector
 from . import Shape
@@ -11,7 +13,13 @@ IS_CONTAINED = 1
 class GameObject:
     def __init__(self, game: Game) -> None:
         self.game = game
+
+        # known objects of given type it can collide with
         self._collision_objs = []
+
+        # list containing a list of [Class, Int]
+        # matching IS_TOUCHED or IS_CONTAINED
+        self._collision_types: list[Type, int] = []
         self.collisions = []
         self._tasks = []
 
@@ -30,22 +38,27 @@ class GameObject:
     def pos(self):
         return self._pos
 
-    def set_collisions(self, collision_list: list[GameObject, int]):
-        self._collision_objs = collision_list
+    def set_collision_types(self, collision_list: list[GameObject, int]):
+        self._collision_types = collision_list
 
-    def add_collision_check(self, obj: GameObject, collision_type: int):
-        self._collision_objs.append([obj, collision_type])
+    def add_collision_check(self, obj_type: Type, contained_or_touched: int):
+        self._collision_types.append([obj_type, contained_or_touched])
 
     def check_collisions(self):
-        collisions = []
+        self._collision_objs = []
+        for obj, col_type in product(self.game.ticked_objs,
+                                     self._collision_types):
+            if isinstance(obj, col_type[0]):
+                self._collision_objs.append([obj, col_type[1]])
+        self.collisions = []
         for obj in self._collision_objs:
             if obj[1] == 1:
                 if obj[0].shape.is_inside(self.shape):
-                    collisions.append(obj[0])
+                    self.collisions.append(obj[0])
             elif obj[1] == 0:
-                if obj[0].shape.is_touching(self.shape):
-                    collisions.append(obj[0])
-        return collisions
+                if self.shape.is_touching(obj[0].shape):
+                    self.collisions.append(obj[0])
+        return self.collisions
 
     def tick_task(self, f):
         self._tasks.append(f)
