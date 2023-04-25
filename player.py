@@ -13,6 +13,7 @@ class Player(GameObject):
         self.speed = Vector(0, 0)  # x, y
         self._color = 11
         self.lives = 3
+        self.game.add_obj(self, True)
         self.tick_task(self.move)
         self.tick_task(self.shoot_missile)
 

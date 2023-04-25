@@ -17,7 +17,7 @@ class Missile(GameObject):
 
     def update_collision_objects(self):
         self._collision_objs = []
-        for obj in self.game.game_objs:
+        for obj in self.game.ticked_objs:
             if isinstance(obj, Enemy):
                 self.add_collision_check(obj, 0)
 

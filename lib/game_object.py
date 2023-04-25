@@ -2,13 +2,14 @@ from __future__ import annotations
 
 from . import Vector
 from . import Shape
+from . import Game
 
 IS_TOUCHED = 0
 IS_CONTAINED = 1
 
 
 class GameObject:
-    def __init__(self, game) -> None:
+    def __init__(self, game: Game) -> None:
         self.game = game
         self._collision_objs = []
         self.collisions = []
