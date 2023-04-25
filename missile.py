@@ -15,7 +15,7 @@ class Missile(GameObject):
         self.shape.draw(self.color)
 
     def move(self):
-        speed_multiplier = 160  # pixels/sec
+        speed_multiplier = 196  # pixels/sec
         self.speed = self.direction.normalize() * speed_multiplier
         self.pos += self.speed * self.game.delta_time
         if not self.game.screen.is_touching(self.shape):
