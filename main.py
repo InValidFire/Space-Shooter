@@ -18,4 +18,4 @@ class RevengeOfRoger(Game):
         GameOverScreen(self, self.player.score)
 
 
-RevengeOfRoger()
+RevengeOfRoger("../resources.pyxres", 30)

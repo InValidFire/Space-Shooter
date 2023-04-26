@@ -2,13 +2,15 @@ import pyxel as px
 from lib import GameObject, Game, Box, Vector
 from enemy import Enemy
 
+from balance import Balance
+
 
 def get_spread_spacing(width_of_n, n, length):
     return (length - width_of_n)/(n-1) - width_of_n
 
 
 class Hive(GameObject):
-    def __init__(self, game: Game, enemy_size: int = 8, enemy_cols: int = 10,
+    def __init__(self, game: Game, enemy_cols: int = 10,
                  enemy_rows: int = 3) -> None:
         super().__init__(game)
         self.shape = Box(game.screen.width * .95,
@@ -20,7 +22,7 @@ class Hive(GameObject):
         self.enemy_ai = True
         self.visible = False
         self.game.add_obj(self, True)
-        self.add_enemies(enemy_size, enemy_cols, enemy_rows)
+        self.add_enemies(enemy_cols, enemy_rows)
         self.tick_task(self.toggle_hive_visibility)
         self.tick_task(self.toggle_hive_ai)
         self.tick_task(self.move_enemies)
@@ -32,20 +34,20 @@ class Hive(GameObject):
                 if enemy not in self.game.ticked_objs:
                     enemy_col.remove(enemy)
 
-    def add_enemies(self, size, cols, rows):
-        row_padding = get_spread_spacing(size, cols, self.shape.width * .9)
-        col_padding = get_spread_spacing(self.game.screen.scaled_height(size),
+    def add_enemies(self, cols, rows):
+        row_padding = get_spread_spacing(Balance.enemy_width, cols,
+                                         self.shape.width * .9)
+        col_padding = get_spread_spacing(Balance.enemy_height,
                                          rows, self.shape.height * .33)
-        starting_pos = Vector(self.pos.x, self.pos.y + 2)
+        pos = Vector(self.pos.x, self.pos.y + 2)
         for col in range(cols):
             enemy_col = []
             for row in range(rows):
-                enemy_col.append(Enemy(self.game, starting_pos, size))
-                starting_pos = Vector(starting_pos.x,
-                                      starting_pos.y + size + col_padding)
+                enemy_col.append(Enemy(self.game, pos))
+                pos = Vector(pos.x, pos.y + Balance.enemy_height + col_padding)
             self.enemies.append(enemy_col)
-            starting_pos = Vector(starting_pos.x + size + row_padding,
-                                  self.pos.y + 2)
+            pos = Vector(pos.x + Balance.enemy_width + row_padding,
+                         self.pos.y + 2)
 
     def toggle_hive_visibility(self):
         if self.game.is_debug and px.btnp(px.KEY_F9):
