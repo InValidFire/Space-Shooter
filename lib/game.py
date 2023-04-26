@@ -25,7 +25,6 @@ class Game:
                 fps=self._fps, title=title)
         if resources is not None:
             px.load(resources)
-        px.mouse(True)
         self.setup()
         px.run(self.update, self.draw)
 
