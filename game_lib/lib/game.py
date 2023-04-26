@@ -2,6 +2,8 @@ import pyxel as px
 
 from . import Screen
 
+__all__ = ["Game"]
+
 
 class Game:
     TICKED = -1

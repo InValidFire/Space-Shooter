@@ -9,6 +9,8 @@ from . import Game
 IS_TOUCHED = 0
 IS_CONTAINED = 1
 
+__all__ = ["IS_TOUCHED", "IS_CONTAINED", "GameObject"]
+
 
 class GameObject:
     def __init__(self, game: Game) -> None:

@@ -3,6 +3,8 @@ from .vector import Vector
 
 import pyxel as px
 
+__all__ = ["Box"]
+
 
 class Box(Shape):
     def __init__(self, w: int, h: int):

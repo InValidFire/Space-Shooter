@@ -3,6 +3,8 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 from .vector import Vector
 
+__all__ = ["Shape"]
+
 
 class Shape(ABC):
     @property

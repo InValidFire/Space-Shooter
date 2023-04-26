@@ -7,6 +7,8 @@ LEFT = -1
 TOP = -1
 BOTTOM = 1
 
+__all__ = [CENTERED, RIGHT, LEFT, TOP, BOTTOM, "TextBox"]
+
 
 class TextBox(GameObject):
     def __init__(self, game: Game, text: str, color: int) -> None:

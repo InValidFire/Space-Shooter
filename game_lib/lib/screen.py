@@ -1,6 +1,8 @@
 from . import Vector, Box
 import pyxel as px
 
+__all__ = ["Screen"]
+
 
 class Screen(Box):
     def __init__(self, width, height) -> None:
