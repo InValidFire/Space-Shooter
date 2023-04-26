@@ -22,12 +22,14 @@ class HUD(GameObject):
         self.game.add_obj(self, False, True, Game.TICKED)
 
     def update_score(self):
-        self.score_box.place(CENTERED, TOP)
-        self.score_box.text = f"Score: {self.game.player.score}"
+        if int(self.score_box.text.split()[1]) != self.game.player.score:
+            self.score_box.place(CENTERED, TOP)
+            self.score_box.text = f"Score: {self.game.player.score}"
 
     def update_lives(self):
-        self.lives_box.place(LEFT, TOP)
-        self.lives_box.text = f"Lives: {self.game.player.lives}"
+        if int(self.lives_box.text.split()[1]) != self.game.player.lives:
+            self.lives_box.place(LEFT, TOP)
+            self.lives_box.text = f"Lives: {self.game.player.lives}"
 
     def game_over(self):
         self.game.debug_objs = [self]
