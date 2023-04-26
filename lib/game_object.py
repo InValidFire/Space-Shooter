@@ -48,7 +48,7 @@ class GameObject:
         self._collision_objs = []
         for obj, col_type in product(self.game.ticked_objs,
                                      self._collision_types):
-            if isinstance(obj, col_type[0]):
+            if isinstance(obj, col_type[0]) and obj is not self:
                 self._collision_objs.append([obj, col_type[1]])
         self.collisions = []
         for obj in self._collision_objs:
