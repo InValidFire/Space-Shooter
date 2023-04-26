@@ -1,1 +1,1 @@
-from lib import *  # noqa: F401, F403
+from .lib import *  # noqa: F401, F403
