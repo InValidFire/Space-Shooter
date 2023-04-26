@@ -1,14 +1,21 @@
+from pathlib import Path
+
 from player import Player
 from hive import Hive
 from game_over import GameOverScreen
-from lib import Game, Screen, TextBox, LEFT, RIGHT, TOP, CENTERED
+from game_lib import Game, Screen, TextBox, LEFT, RIGHT, TOP, CENTERED
+
+import pyxel as px
 
 
 class RogersRevenge(Game):
-    def __init__(self):
-        self.version = "alpha_build_1"
-        super().__init__("Roger's Revenge", "../resources.pyxres", 30,
-                         Screen(320, 240))
+    def __init__(self, fps):
+        screen = Screen(320, 240)
+        px.init(screen.width, screen.height,
+                fps=fps, title="Roger's Revenge")
+        self.version = Path("assets/version").read_text("utf-8")
+        super().__init__("assets/resources.pyxres", fps,
+                         screen)
 
     def setup(self):
         self.player = Player(self)
@@ -35,4 +42,4 @@ class RogersRevenge(Game):
         GameOverScreen(self, self.player.score)
 
 
-RogersRevenge()
+RogersRevenge(fps=30)

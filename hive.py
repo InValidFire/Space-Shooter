@@ -1,5 +1,5 @@
 import pyxel as px
-from lib import GameObject, Game, Box, Vector
+from game_lib import GameObject, Game, Box, Vector
 from enemy import Enemy
 
 

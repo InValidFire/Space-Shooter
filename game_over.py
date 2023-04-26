@@ -1,5 +1,5 @@
 import pyxel as px
-from lib import TextBox, Game, CENTERED
+from game_lib import TextBox, Game, CENTERED
 
 
 class GameOverScreen(TextBox):

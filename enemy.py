@@ -1,5 +1,5 @@
 import random as r
-from lib import Vector, GameObject, Box, IS_TOUCHED
+from game_lib import Vector, GameObject, Box, IS_TOUCHED
 from bullet import Bullet
 
 

@@ -1,5 +1,5 @@
 import pyxel as px
-from lib import Vector, GameObject, Box
+from game_lib import Vector, GameObject, Box
 
 
 class Bullet(GameObject):

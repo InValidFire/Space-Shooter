@@ -1,6 +1,6 @@
 import pyxel as px
 
-from lib import Vector, GameObject, Box, IS_TOUCHED
+from game_lib import Vector, GameObject, Box, IS_TOUCHED
 from bullet import Bullet
 
 
