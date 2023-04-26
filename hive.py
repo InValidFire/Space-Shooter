@@ -12,7 +12,7 @@ class Hive(GameObject):
                  enemy_rows: int = 3) -> None:
         super().__init__(game)
         self.shape = Box(game.screen.width * .95,
-                         game.screen.height * .85, 3)
+                         game.screen.height * .85, 7)
         self.pos = Vector((game.screen.width - self.shape.width)/2,
                           game.screen.height * .05)
         self.enemies: list[list[Enemy]] = []
@@ -46,7 +46,7 @@ class Hive(GameObject):
                          self.pos.y + 2)
 
     def toggle_hive_ai(self):
-        if self.game.is_debug and px.btnp(px.KEY_F10):
+        if px.btnp(px.KEY_F10):
             self.enemy_ai = not self.enemy_ai
 
     def move_enemies(self):
