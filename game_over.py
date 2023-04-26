@@ -1,17 +1,14 @@
 import pyxel as px
-from lib import GameObject, Game
+from lib import TextBox, Game, CENTERED
 
 
-class GameOverScreen(GameObject):
+class GameOverScreen(TextBox):
     def __init__(self, game: Game, score: int) -> None:
-        super().__init__(game)
-        self.score = score
+        text = f"Game Over\nScore: {score}\nPress SPACE to restart"
+        super().__init__(game, text, 10)
+        self.place(CENTERED, CENTERED)
         self.game.add_obj(self, True)
         self.tick_task(self.restart_game)
-
-    def draw(self):
-        px.text(self.game.screen.width/2, self.game.screen.height/2,
-                f"Game Over\nScore: {self.score}\nPress SPACE to restart", 3)
 
     def restart_game(self):
         if px.btnp(px.KEY_SPACE):
