@@ -15,6 +15,7 @@ class RevengeOfRoger(Game):
     def game_over(self):
         self.ticked_objs = []
         self.drawn_objects = []
+        self.debug_objs = []
         GameOverScreen(self, self.player.score)
 
 

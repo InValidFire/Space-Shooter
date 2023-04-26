@@ -2,8 +2,6 @@ import pyxel as px
 from lib import GameObject, Game, Box, Vector
 from enemy import Enemy
 
-from balance import Balance
-
 
 def get_spread_spacing(width_of_n, n, length):
     return (length - width_of_n)/(n-1) - width_of_n
@@ -35,18 +33,18 @@ class Hive(GameObject):
                     enemy_col.remove(enemy)
 
     def add_enemies(self, cols, rows):
-        row_padding = get_spread_spacing(Balance.enemy_width, cols,
+        row_padding = get_spread_spacing(Enemy.width, cols,
                                          self.shape.width * .9)
-        col_padding = get_spread_spacing(Balance.enemy_height,
+        col_padding = get_spread_spacing(Enemy.height,
                                          rows, self.shape.height * .33)
         pos = Vector(self.pos.x, self.pos.y + 2)
         for col in range(cols):
             enemy_col = []
             for row in range(rows):
                 enemy_col.append(Enemy(self.game, pos))
-                pos = Vector(pos.x, pos.y + Balance.enemy_height + col_padding)
+                pos = Vector(pos.x, pos.y + Enemy.height + col_padding)
             self.enemies.append(enemy_col)
-            pos = Vector(pos.x + Balance.enemy_width + row_padding,
+            pos = Vector(pos.x + Enemy.width + row_padding,
                          self.pos.y + 2)
 
     def toggle_hive_visibility(self):
