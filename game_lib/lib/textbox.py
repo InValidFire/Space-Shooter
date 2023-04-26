@@ -35,14 +35,19 @@ class TextBox(GameObject):
         self.pos = Vector(horizontal_pos, vertical_pos)
 
     def calculate_size(self):
-        length = 0
         width = 0
-        rows = self.text.split()
+        height = 0
+        rows = self.text.strip().split("\n")
+        longest_row = ""
+        height += len(rows)
         for row in rows:
-            width += 5
-            for char in row:
-                length += 4
-        return length, width
+            height += 5
+            if len(row) > len(longest_row):
+                longest_row = row
+        for char in longest_row:
+            width += 4
+        print(longest_row, rows, width, height)
+        return width, height
 
     def draw(self):
         px.text(self.pos.x, self.pos.y, self.text, self.color)
