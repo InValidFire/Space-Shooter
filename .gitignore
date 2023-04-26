@@ -1,6 +1,8 @@
 **/__pycache__/
 **/.vscode
 
+version
+
 # pyxel builds
 *.pyxapp
 *.html
