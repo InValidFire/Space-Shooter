@@ -12,16 +12,14 @@ class Hive(GameObject):
                  enemy_rows: int = 3) -> None:
         super().__init__(game)
         self.shape = Box(game.screen.width * .95,
-                         game.screen.height * .85)
+                         game.screen.height * .85, 3)
         self.pos = Vector((game.screen.width - self.shape.width)/2,
                           game.screen.height * .05)
         self.enemies: list[list[Enemy]] = []
         self.enemy_direction = -1
         self.enemy_ai = True
-        self.visible = False
-        self.game.add_obj(self, True)
+        self.game.add_obj(self, True, True, Game.TICKED)
         self.add_enemies(enemy_cols, enemy_rows)
-        self.tick_task(self.toggle_hive_visibility)
         self.tick_task(self.toggle_hive_ai)
         self.tick_task(self.move_enemies)
         self.tick_task(self.remove_killed_enemies)
@@ -46,10 +44,6 @@ class Hive(GameObject):
             self.enemies.append(enemy_col)
             pos = Vector(pos.x + Enemy.width + row_padding,
                          self.pos.y + 2)
-
-    def toggle_hive_visibility(self):
-        if self.game.is_debug and px.btnp(px.KEY_F9):
-            self.visible = not self.visible
 
     def toggle_hive_ai(self):
         if self.game.is_debug and px.btnp(px.KEY_F10):
@@ -79,7 +73,3 @@ class Hive(GameObject):
                     enemy.pos.y += enemy.speed * self.game.delta_time
                     enemy.speed += 1
                 enemy.pos.x += enemy.speed * self.enemy_direction * self.game.delta_time
-
-    def draw(self):
-        if self.game.is_debug and self.visible:
-            self.shape.draw(7)

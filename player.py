@@ -12,7 +12,7 @@ class Player(GameObject):
 
     def __init__(self, game):
         super().__init__(game)
-        self.shape = Box(Player.width, Player.height)
+        self.shape = Box(Player.width, Player.height, 2)
         self.pos = self.game.screen.scaled_pos(.5, .9)  # x, y
         self.last_shot_sec = -2
         self.speed = Vector(0, 0)  # x, y

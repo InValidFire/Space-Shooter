@@ -7,9 +7,10 @@ __all__ = ["Box"]
 
 
 class Box(Shape):
-    def __init__(self, w: int, h: int):
+    def __init__(self, w: int, h: int, color: int = 1):
         self.width = w
         self.height = h
+        self.color = color
 
     def __repr__(self) -> str:
         return f"Box: {self.corners}"
@@ -61,6 +62,7 @@ class Box(Shape):
         else:
             raise TypeError(other_shape)
 
-    def draw(self, color: int):
-        px.rect(self.pos.x, self.pos.y,
-                self.width, self.height, color)
+    def draw(self):
+        if self.visible:
+            px.rect(self.pos.x, self.pos.y,
+                    self.width, self.height, self.color)

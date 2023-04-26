@@ -5,7 +5,7 @@ from game_lib import Vector, GameObject, Box
 class Bullet(GameObject):
     def __init__(self, game, direction: Vector, pos: Vector):
         super().__init__(game)
-        self.shape = Box(4, 5)
+        self.shape = Box(4, 5, 4)
         self.direction = direction
         self.pos = pos
         self.game.add_obj(self, True)

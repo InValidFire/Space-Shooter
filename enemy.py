@@ -12,7 +12,7 @@ class Enemy(GameObject):
 
     def __init__(self, game, pos: Vector):
         super().__init__(game)
-        self.shape = Box(Enemy.width, Enemy.height)
+        self.shape = Box(Enemy.width, Enemy.height, color=10)
         self.speed = Enemy.speed_multiplier
         self.last_shot_sec = -2
         self.can_attack = False
@@ -47,4 +47,6 @@ class Enemy(GameObject):
                        Vector(self.pos.x, self.pos.y + self.shape.height + 2))
 
     def draw(self):
-        self.shape.draw(10)
+        self.shape.visible = True
+        self.shape.draw()
+        self.shape.visible = False

@@ -2,6 +2,8 @@ from __future__ import annotations
 from itertools import product
 from typing import Type
 
+import pyxel as px
+
 from . import Vector
 from . import Shape
 from . import Game
@@ -24,6 +26,11 @@ class GameObject:
         self._collision_types: list[Type, int] = []
         self.collisions = []
         self._tasks = []
+        self.tick_task(self.toggle_shape_visibility)
+
+    def toggle_shape_visibility(self):
+        if px.btnp(px.KEY_F9):
+            self.shape.visible = not self.shape.visible
 
     @property
     def shape(self):
@@ -32,7 +39,10 @@ class GameObject:
     @shape.setter
     def shape(self, value):
         if isinstance(value, Shape):
+            if "_shape" in self.__dict__:
+                self.game.remove_obj(self._shape)
             self._shape = value
+            self.game.add_obj(self._shape, False, True, Game.DRAWN)
         else:
             raise TypeError(value)
 
