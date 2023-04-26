@@ -2,8 +2,6 @@ from __future__ import annotations
 from itertools import product
 from typing import Type
 
-import pyxel as px
-
 from . import Vector
 from . import Shape
 from . import Game
@@ -17,6 +15,7 @@ __all__ = ["IS_TOUCHED", "IS_CONTAINED", "GameObject"]
 class GameObject:
     def __init__(self, game: Game) -> None:
         self.game = game
+        self._shape = None
 
         # known objects of given type it can collide with
         self._collision_objs = []

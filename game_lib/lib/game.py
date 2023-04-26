@@ -36,7 +36,8 @@ class Game:
             else:
                 obj_list.append(obj)
 
-        add_to_list(self.drawn_objects, game_object.shape)
+        if game_object.shape is not None:
+            add_to_list(self.drawn_objects, game_object.shape)
         if obj_type == Game.BOTH:
             add_to_list(self.ticked_objs)
             add_to_list(self.drawn_objects)
