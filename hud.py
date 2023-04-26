@@ -36,7 +36,7 @@ class HUD(GameObject):
         self.game.ticked_objs = []
         self.game.drawn_objects = []
         text = f"Game Over\nScore: {self.game.player.score}" \
-            "\nPress SPACE to restart"
+            "\nPress SPACE (A) to restart"
         game_over_box = TextBox(self.game, text, 11)
         game_over_box.place(CENTERED, CENTERED)
         self.game.add_obj(self, True, True, Game.TICKED)
@@ -45,6 +45,6 @@ class HUD(GameObject):
         self.tick_task(self.restart_game)
 
     def restart_game(self):
-        if px.btnp(px.KEY_SPACE):
+        if px.btnp(px.KEY_SPACE or px.GAMEPAD1_BUTTON_A):
             self.untick_task(self.restart_game)
             self.game.setup()

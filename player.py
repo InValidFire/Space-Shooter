@@ -63,7 +63,7 @@ class Player(GameObject):
 
     def shoot_bullet(self):
         can_shoot = (self.game.time - self.last_shot_sec) > Player.fire_delay
-        if px.btnp(px.KEY_UP or px.GAMEPAD1_BUTTON_DPAD_UP) and can_shoot:
+        if px.btnp(px.KEY_UP or px.GAMEPAD1_BUTTON_A) and can_shoot:
             self.last_shot_sec = self.game.time
             Bullet(self.game, Vector(0, -1),
                    Vector(self.pos.x + (self.shape.width/4) + 4,
