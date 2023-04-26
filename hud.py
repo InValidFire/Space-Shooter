@@ -45,6 +45,6 @@ class HUD(GameObject):
         self.tick_task(self.restart_game)
 
     def restart_game(self):
-        if px.btnp(px.KEY_SPACE or px.GAMEPAD1_BUTTON_A):
+        if px.btnp(px.KEY_SPACE) or px.btnp(px.GAMEPAD1_BUTTON_A):
             self.untick_task(self.restart_game)
             self.game.setup()

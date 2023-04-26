@@ -47,9 +47,9 @@ class Player(GameObject):
 
         self.speed = Vector(0, 0)
 
-        if px.btn(px.KEY_LEFT or px.GAMEPAD1_BUTTON_DPAD_LEFT):
+        if px.btn(px.KEY_LEFT) or px.btn(px.GAMEPAD1_BUTTON_DPAD_LEFT):
             self.speed.x -= 1
-        if px.btn(px.KEY_RIGHT or px.GAMEPAD1_BUTTON_DPAD_RIGHT):
+        if px.btn(px.KEY_RIGHT) or px.btn(px.GAMEPAD1_BUTTON_DPAD_RIGHT):
             self.speed.x += 1
         if px.btnp(px.KEY_F8):
             self.immortal = not self.immortal
@@ -63,7 +63,7 @@ class Player(GameObject):
 
     def shoot_bullet(self):
         can_shoot = (self.game.time - self.last_shot_sec) > Player.fire_delay
-        if px.btnp(px.KEY_UP or px.GAMEPAD1_BUTTON_A) and can_shoot:
+        if px.btnp(px.KEY_UP) or px.btnp(px.GAMEPAD1_BUTTON_A) and can_shoot:
             self.last_shot_sec = self.game.time
             Bullet(self.game, Vector(0, -1),
                    Vector(self.pos.x + (self.shape.width/4) + 4,
