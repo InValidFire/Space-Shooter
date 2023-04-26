@@ -33,5 +33,7 @@ class Screen(Box):
             value = game_obj.__dict__[key]
             if isinstance(value, float):
                 value = round(value, 2)
+            if isinstance(value, str):
+                value = value.replace("\n", "\\n")
             px.text(debug_pos.x, debug_pos.y, f"{key}={value}", color)
             debug_pos += Vector(0, 7)
