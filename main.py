@@ -1,10 +1,14 @@
 from player import Player
 from hive import Hive
 from game_over import GameOverScreen
-from lib import Game
+from lib import Game, Screen
 
 
-class RevengeOfRoger(Game):
+class RogersRevenge(Game):
+    def __init__(self):
+        super().__init__("Roger's Revenge", "../resources.pyxres", 30,
+                         Screen(320, 240))
+
     def setup(self):
         self.player = Player(self)
         Hive(self)
@@ -19,4 +23,4 @@ class RevengeOfRoger(Game):
         GameOverScreen(self, self.player.score)
 
 
-RevengeOfRoger("../resources.pyxres", 30)
+RogersRevenge()

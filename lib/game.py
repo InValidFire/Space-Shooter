@@ -8,7 +8,7 @@ class Game:
     DRAWN = 1
     BOTH = 0
 
-    def __init__(self, resources: str = None, fps: int = 60,
+    def __init__(self, title, resources: str = None, fps: int = 60,
                  screen: Screen = Screen(320, 240)):
         self._fps = fps
         self.delta_time = 0
@@ -22,7 +22,7 @@ class Game:
         self.debug_objs = [self, self.screen]
 
         px.init(self.screen.width, self.screen.height,
-                fps=self._fps, title="Pixel Playground")
+                fps=self._fps, title=title)
         if resources is not None:
             px.load(resources)
         px.mouse(True)
