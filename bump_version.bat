@@ -1,8 +1,8 @@
 @echo off
-@REM echo Creating Tag named %1
-@REM git tag -a %1 -m "%1"
-@REM echo Sending tag to origin
-@REM git push origin %1
+echo Creating Tag named %1
+git tag -a %1 -m "%1"
+echo Sending tag to origin
+git push origin %1
 echo Creating version file
 @REM set /p will remove preceding spaces
 echo | set /p pre_text="‎hash: " > ./assets/version
