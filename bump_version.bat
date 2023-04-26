@@ -5,7 +5,7 @@ echo Sending tag to origin
 git push origin %1
 echo Creating version file
 @REM set /p will remove preceding spaces
-echo | set /p pre_text="‎hash: " > ./assets/version
+echo | set /p pre_text="‎ ‎hash: " > ./assets/version
 git log --format="%%h" -n 1 >> ./assets/version
 echo | set /p commit_pre_text="build: " >> ./assets/version
 echo %1>> ./assets/version

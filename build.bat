@@ -1,4 +1,5 @@
 @echo off
+call bump_version %1
 echo Starting build script
 rmdir build /s /q
 pyxel package . main.py
