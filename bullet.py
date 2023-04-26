@@ -2,13 +2,12 @@ import pyxel as px
 from lib import Vector, GameObject, Box
 
 
-class Missile(GameObject):
-    def __init__(self, game, direction: Vector, pos: Vector, color: int):
+class Bullet(GameObject):
+    def __init__(self, game, direction: Vector, pos: Vector):
         super().__init__(game)
         self.shape = Box(4, 5)
         self.direction = direction
         self.pos = pos
-        self.color = color
         self.game.add_obj(self, True)
         self.tick_task(self.move)
 
