@@ -19,6 +19,9 @@ class TextBox(GameObject):
         self.shape = Box(size[0], size[1])
 
     def place(self, horizontal_pos: int, vertical_pos: int):
+        size = self.calculate_size()
+        self.shape.width = size[0]
+        self.shape.height = size[1]
         if horizontal_pos == -1:
             horizontal_pos = 2
         elif horizontal_pos == 0:
@@ -46,7 +49,6 @@ class TextBox(GameObject):
                 longest_row = row
         for char in longest_row:
             width += 4
-        print(longest_row, rows, width, height)
         return width, height
 
     def draw(self):
