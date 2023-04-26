@@ -17,7 +17,6 @@ class Player(GameObject):
         self.last_shot_sec = -2
         self.speed = Vector(0, 0)  # x, y
         self.score = 0
-        self._color = 11
         self.lives = 2
         self.immortal = False
         self.game.add_obj(self, True)
@@ -72,17 +71,3 @@ class Player(GameObject):
 
     def draw(self):
         px.blt(self.pos.x, self.pos.y, 0, 0, 0, 16, 16, 0)
-        px.text(self.game.screen.width/2, 0,
-                f"Score: {self.score}", self.color)
-        px.text(0, 0, f"Lives: {self.lives}", self.color)
-
-    @property
-    def color(self) -> int:
-        return self._color
-
-    @color.setter
-    def color(self, value: int):
-        if type(value) != int:
-            raise TypeError(value)
-        else:
-            self._color = value
