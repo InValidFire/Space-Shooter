@@ -63,7 +63,7 @@ class Player(GameObject):
                            self.pos.y - 2), self.color)
 
     def draw(self):
-        self.shape.draw(11)
+        px.blt(self.pos.x, self.pos.y, 0, 0, 0, 16, 16, 0)
         px.text(self.game.screen.width/2, 0,
                 f"Score: {self.score}", self.color)
         px.text(0, 0, f"Lives: {self.lives}", self.color)

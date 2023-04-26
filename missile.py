@@ -1,10 +1,11 @@
+import pyxel as px
 from lib import Vector, GameObject, Box
 
 
 class Missile(GameObject):
     def __init__(self, game, direction: Vector, pos: Vector, color: int):
         super().__init__(game)
-        self.shape = Box(2, 4)
+        self.shape = Box(4, 5)
         self.direction = direction
         self.pos = pos
         self.color = color
@@ -12,7 +13,7 @@ class Missile(GameObject):
         self.tick_task(self.move)
 
     def draw(self):
-        self.shape.draw(self.color)
+        px.blt(self.pos.x, self.pos.y, 0, 16, 0, 5, 5, 0)
 
     def move(self):
         speed_multiplier = 196  # pixels/sec
