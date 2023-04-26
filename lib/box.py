@@ -9,6 +9,9 @@ class Box(Shape):
         self.width = w
         self.height = h
 
+    def __repr__(self) -> str:
+        return f"Box: {self.corners}"
+
     @property
     def pos(self) -> Vector:
         return self._pos
