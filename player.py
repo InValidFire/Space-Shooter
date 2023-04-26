@@ -38,7 +38,7 @@ class Player(GameObject):
                 px.play(0, 0)
                 self.game.remove_obj(collision_obj)
             if self.lives < 0:
-                self.game.game_over()
+                self.game.hud.game_over()
 
     def move(self):
         speed_multiplier = Player.speed_multiplier  # pixels/second
