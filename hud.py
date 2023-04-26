@@ -32,14 +32,16 @@ class HUD(GameObject):
             self.lives_box.text = f"Lives: {self.game.player.lives}"
 
     def game_over(self):
-        self.game.debug_objs = [self]
-        self.game.ticked_objs = [self]
-        self.game.drawn_objects = [self.version_box]
+        self.game.debug_objs = []
+        self.game.ticked_objs = []
+        self.game.drawn_objects = []
         text = f"Game Over\nScore: {self.game.player.score}" \
             "\nPress SPACE to restart"
         game_over_box = TextBox(self.game, text, 11)
         game_over_box.place(CENTERED, CENTERED)
-        self.game.add_obj(game_over_box)
+        self.game.add_obj(self, True, True, Game.TICKED)
+        self.game.add_obj(self.version_box, True, True, Game.DRAWN)
+        self.game.add_obj(game_over_box, True, True, Game.DRAWN)
         self.tick_task(self.restart_game)
 
     def restart_game(self):
