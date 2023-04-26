@@ -6,7 +6,5 @@
 *.html
 
 # nuitka builds
-main.build/*
-main.dist/*
-main.onefile-build/*
+build
 *.exe
