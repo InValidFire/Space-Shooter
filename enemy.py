@@ -48,5 +48,3 @@ class Enemy(GameObject):
 
     def draw(self):
         self.shape.visible = True
-        self.shape.draw()
-        self.shape.visible = False

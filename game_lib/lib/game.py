@@ -1,6 +1,6 @@
 import pyxel as px
 
-from . import Screen
+from . import Screen, Shape
 
 __all__ = ["Game"]
 
@@ -28,14 +28,15 @@ class Game:
         self.setup()
         px.run(self.update, self.draw)
 
-    def add_obj(self, obj, debug: bool = False, on_top: bool = True,
+    def add_obj(self, game_object, debug: bool = False, on_top: bool = True,
                 obj_type: int = BOTH):
-        def add_to_list(obj_list: list):
+        def add_to_list(obj_list: list, obj=game_object):
             if not on_top:
                 obj_list.insert(0, obj)
             else:
                 obj_list.append(obj)
 
+        add_to_list(self.drawn_objects, game_object.shape)
         if obj_type == Game.BOTH:
             add_to_list(self.ticked_objs)
             add_to_list(self.drawn_objects)
@@ -44,13 +45,14 @@ class Game:
         elif obj_type == Game.DRAWN:
             add_to_list(self.drawn_objects)
         if debug:
-            self.debug_objs.append(obj)
+            self.debug_objs.append(game_object)
 
     def remove_obj(self, obj):
         if obj in self.ticked_objs:
             self.ticked_objs.remove(obj)
         if obj in self.drawn_objects:
             self.drawn_objects.remove(obj)
+            self.drawn_objects.remove(obj.shape)
         if obj in self.debug_objs:
             self.debug_objs.remove(obj)
 
@@ -69,6 +71,8 @@ class Game:
             self._debug_index = 0
         if self._debug_index < 0:
             self._debug_index = len(self.debug_objs) - 1
+        if px.btnp(px.KEY_F9):
+            Shape.force_visible = not Shape.force_visible
         if px.btnp(px.KEY_F3):
             self.is_debug = not self.is_debug
         if px.btnp(px.KEY_ESCAPE):

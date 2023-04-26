@@ -7,6 +7,8 @@ __all__ = ["Shape"]
 
 
 class Shape(ABC):
+    force_visible = False
+
     @property
     def color(self) -> bool:
         if "_color" not in self.__dict__:
@@ -25,7 +27,7 @@ class Shape(ABC):
     def visible(self) -> bool:
         if "_visible" not in self.__dict__:
             self._visible = False
-        return self._visible
+        return Shape.force_visible or self._visible
 
     @visible.setter
     def visible(self, value: bool):
@@ -49,5 +51,5 @@ class Shape(ABC):
         pass
 
     @abstractmethod
-    def draw(self, color: int):
+    def draw(self):
         pass

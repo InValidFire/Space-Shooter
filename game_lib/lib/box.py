@@ -63,6 +63,6 @@ class Box(Shape):
             raise TypeError(other_shape)
 
     def draw(self):
-        if self.visible:
+        if Shape.force_visible or self.visible:
             px.rect(self.pos.x, self.pos.y,
                     self.width, self.height, self.color)
