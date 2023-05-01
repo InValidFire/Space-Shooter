@@ -19,6 +19,8 @@ jobs:
         steps:
             - name: Check-out repository
               uses: actions/checkout@v3
+              with:
+                fetch-depth: 0
             - name: Setup Python
               uses: actions/setup-python@v4
               with:
@@ -34,7 +36,6 @@ jobs:
                 sudo apt-get -y install patchelf
             - name: Build Executable
               run: |
-                git fetch --tags
                 scripts/build.sh
             - name: Create Release
               uses: ncipollo/release-action@v1
@@ -48,6 +49,8 @@ jobs:
         steps:
             - name: Check-out repository
               uses: actions/checkout@v3
+              with:
+                fetch-depth: 0
             - name: Setup Windows SDK
               uses: GuillaumeFalourd/setup-windows10-sdk-action@v1.11
             - name: Setup Python
@@ -63,7 +66,6 @@ jobs:
                 pip install -r requirements.txt -r requirements-dev.txt
             - name: Build Executable
               run: |
-                scripts\generate_version.ps1
                 scripts\build.ps1
             - name: Create Release
               uses: ncipollo/release-action@v1
