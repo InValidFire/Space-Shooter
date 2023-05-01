@@ -30,6 +30,7 @@ jobs:
             - name: Install dependencies
               run: |
                 pip install -r requirements.txt -r requirements-dev.txt
+                sudo apt-get -y install libsdl2-dev
                 sudo apt-get -y install patchelf
             - name: Build Executable
               run: |
