@@ -19,13 +19,9 @@ class Game:
         self.screen = screen
         self.is_debug = False
         self._debug_index = 0
-        self.ticked_objs = []
-        self.drawn_objects = []
-        self.debug_objs = [self, self.screen]
-
+        self.reset()
         if resources is not None:
             px.load(resources)
-        self.setup()
         px.run(self.update, self.draw)
 
     def add_obj(self, game_object, debug: bool = False, on_top: bool = True,
@@ -76,10 +72,18 @@ class Game:
             Shape.force_visible = not Shape.force_visible
         if px.btnp(px.KEY_F3):
             self.is_debug = not self.is_debug
+        if px.btnp(px.KEY_F5):
+            self.reset()
         if px.btnp(px.KEY_ESCAPE):
             px.quit()
         if px.btnp(px.KEY_F11):
             px.fullscreen(not px.is_fullscreen)
+
+    def reset(self):
+        self.ticked_objs = []
+        self.drawn_objects = []
+        self.debug_objs = [self, self.screen]
+        self.setup()
 
     def draw(self):
         px.cls(0)

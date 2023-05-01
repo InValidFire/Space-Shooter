@@ -32,6 +32,9 @@ class HUD(GameObject):
             self.lives_box.text = f"Lives: {self.game.player.lives}"
 
     def game_over(self):
+        self.tick_task(self.game_over_screen)
+
+    def game_over_screen(self):
         self.game.debug_objs = []
         self.game.ticked_objs = []
         self.game.drawn_objects = []
@@ -42,9 +45,6 @@ class HUD(GameObject):
         self.game.add_obj(self, True, True, Game.TICKED)
         self.game.add_obj(self.version_box, True, True, Game.DRAWN)
         self.game.add_obj(game_over_box, True, True, Game.DRAWN)
-        self.tick_task(self.restart_game)
-
-    def restart_game(self):
         if px.btnp(px.KEY_SPACE) or px.btnp(px.GAMEPAD1_BUTTON_A):
-            self.untick_task(self.restart_game)
-            self.game.setup()
+            self.untick_task(self.game_over_screen)
+            self.game.reset()
