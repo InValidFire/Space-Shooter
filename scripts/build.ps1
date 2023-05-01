@@ -3,6 +3,7 @@ if (Test-Path ".\build") {
     Remove-Item -Path ".\build" -Recurse
     Write-Host "Folder .\build removed."
 }
+.\scripts\generate_version.ps1
 Write-Host "Packaging Pyxel application"
 pyxel package . main.py
 Write-Host "Exporting Pyxel application to HTML"
