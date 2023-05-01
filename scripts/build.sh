@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/bash
 echo Starting build script
 if [[ -d "./build" ]]
 then
