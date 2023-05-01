@@ -14,5 +14,5 @@ if (-Not (Test-Path ".\dist")) {
 }
 Move-Item -Path "rogers_revenge.pyxapp" -Destination ".\dist\rogers_revenge.pyxapp"
 Move-Item -Path "rogers_revenge.html" -Destination ".\dist\rogers_revenge.html"
-nuitka3 --standalone --onefile --include-data-dir=assets=assets --include-package=game_lib --output-dir=build --output-filename=rogers_revenge.exe main.py
+nuitka --standalone --onefile --include-data-dir=assets=assets --windows-disable-console --include-package=game_lib --output-dir=build --output-filename=rogers_revenge.exe main.py
 Move-Item -Path ".\build\rogers_revenge.exe .\dist\rogers_revenge.exe"
