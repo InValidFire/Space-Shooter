@@ -1,0 +1,17 @@
+echo "Starting build script"
+if (Test-Path ".\build") {
+    Remove-Item -Path ".\build" -Recurse
+    Write-Host "Folder .\build removed."
+}
+Write-Host "Packaging Pyxel application"
+pyxel package . main.py
+Write-Host "Exporting Pyxel application to HTML"
+pyxel app2html rogers_revenge.pyxapp
+if (Test-Path ".\dist") {
+    New-Item -Path ".\dist" -ItemType Directory
+    Write-Host "Folder .\dist created."
+}
+Move-Item -Path "rogers_revenge.pyxapp" -Destination ".\dist"
+Move-Item -Path "rogers_revenge.html" -Destination ".\dist"
+nuitka3 --standalone --onefile --include-data-dir=assets=assets --include-package=game_lib --output-dir=build --output-filename=rogers_revenge.exe main.py
+Move-Item -Path ".\build\rogers_revenge.exe .\dist"
