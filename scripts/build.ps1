@@ -8,7 +8,7 @@ Write-Host "Packaging Pyxel application"
 pyxel package . main.py
 Write-Host "Exporting Pyxel application to HTML"
 pyxel app2html rogers_revenge.pyxapp
-if (-Not Test-Path ".\dist") {
+if (-Not (Test-Path ".\dist")) {
     New-Item -Path ".\dist" -ItemType Directory
     Write-Host "Folder .\dist created."
 }
