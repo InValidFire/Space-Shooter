@@ -34,7 +34,7 @@ jobs:
                 sudo apt-get -y install patchelf
             - name: Build Executable
               run: |
-                scripts/generate_version.sh
+                git fetch --tags
                 scripts/build.sh
             - name: Create Release
               uses: ncipollo/release-action@v1
@@ -48,6 +48,13 @@ jobs:
         steps:
             - name: Check-out repository
               uses: actions/checkout@v3
+            - name: Setup Windows SDK
+              uses: GuillaumeFalourd/setup-windows10-sdk-action@v1.11
+            - name: Build SDK
+              shell: bash
+              run: |
+                cmake -DCMAKE_SYSTEM_VERSION=10.0.20348.0
+                cmake --build .
             - name: Setup Python
               uses: actions/setup-python@v4
               with:
