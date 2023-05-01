@@ -8,5 +8,5 @@ version
 *.html
 
 # nuitka builds
-build
-*.exe
+build/
+dist/
