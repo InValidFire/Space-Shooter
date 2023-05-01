@@ -5,7 +5,7 @@ then
     rmdir -r ./build
     echo "Folder ./build removed."
 fi
-./generate_version.sh
+./scripts/generate_version.sh
 echo "Packaging Pyxel application"
 pyxel package . main.py
 echo "Exporting Pyxel application to HTML"
