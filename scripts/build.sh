@@ -17,5 +17,5 @@ then
 fi
 mv rogers_revenge.pyxapp dist/
 mv rogers_revenge.html dist/
-nuitka3 --standalone --onefile --include-data-dir=assets=assets --include-package=game_lib --output-dir=build --output-filename=rogers_revenge.bin main.py
+nuitka3 --standalone --onefile --assume-yes-for-downloads --include-data-dir=assets=assets --include-package=game_lib --output-dir=build --output-filename=rogers_revenge.bin main.py
 mv build/rogers_revenge.bin dist/
