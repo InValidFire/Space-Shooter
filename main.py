@@ -18,9 +18,6 @@ class RogersRevenge(Game):
                          screen)
 
     def setup(self):
-        self.debug_objs = []
-        self.ticked_objs = []
-        self.drawn_objects = []
         self.player = Player(self)
         Hive(self)
         self.hud = HUD(self)
